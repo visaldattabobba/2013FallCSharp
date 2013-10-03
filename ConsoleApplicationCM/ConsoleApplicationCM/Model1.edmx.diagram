@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="176e13e685364ef5b1b643a0f5a66d19" Name="Diagram1" >
+        <EntityTypeShape EntityType="Model1.User" Width="1.5" PointX="6" PointY="4" />
+        <EntityTypeShape EntityType="Model1.PersonalInfo" Width="1.5" PointX="1.5" PointY="5.5" />
+        <EntityTypeShape EntityType="Model1.Profile" Width="1.5" PointX="9" PointY="5.25" />
+        <EntityTypeShape EntityType="Model1.ContactList" Width="1.5" PointX="5.875" PointY="8.25" />
+        <EntityTypeShape EntityType="Model1.BusinessContact" Width="1.5" PointX="9.25" PointY="8.25" />
+        <EntityTypeShape EntityType="Model1.General" Width="1.5" PointX="2.125" PointY="8.5" />
+        <EntityTypeShape EntityType="Model1.Schedule" Width="1.5" PointX="8.75" PointY="0.5" />
+        <EntityTypeShape EntityType="Model1.Help" Width="1.5" PointX="6" PointY="0.5" />
+        <EntityTypeShape EntityType="Model1.Email" Width="1.5" PointX="3.25" PointY="0.5" />
+        <AssociationConnector Association="Model1.PersonalInfoUser" />
+        <AssociationConnector Association="Model1.UserProfile" />
+        <AssociationConnector Association="Model1.UserContactList" />
+        <AssociationConnector Association="Model1.ContactListBusinessContact" />
+        <AssociationConnector Association="Model1.ContactListGeneral" />
+        <AssociationConnector Association="Model1.UserHelp" />
+        <AssociationConnector Association="Model1.UserEmail" />
+        <AssociationConnector Association="Model1.UserSchedule" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="Model1TargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="Model1.User" />
+          <EntitySet Name="PersonalInfoes" EntityType="Model1.PersonalInfo" />
+          <EntitySet Name="Profiles" EntityType="Model1.Profile" />
+          <EntitySet Name="ContactLists" EntityType="Model1.ContactList" />
+          <EntitySet Name="BusinessContacts" EntityType="Model1.BusinessContact" />
+          <EntitySet Name="Generals" EntityType="Model1.General" />
+          <EntitySet Name="Schedules" EntityType="Model1.Schedule" />
+          <EntitySet Name="Helps" EntityType="Model1.Help" />
+          <EntitySet Name="Emails" EntityType="Model1.Email" />
+          <AssociationSet Name="PersonalInfoUser" Association="Model1.PersonalInfoUser">
+            <End Role="PersonalInfo" EntitySet="PersonalInfoes" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="UserProfile" Association="Model1.UserProfile">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Profile" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="UserContactList" Association="Model1.UserContactList">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ContactList" EntitySet="ContactLists" />
+          </AssociationSet>
+          <AssociationSet Name="ContactListBusinessContact" Association="Model1.ContactListBusinessContact">
+            <End Role="ContactList" EntitySet="ContactLists" />
+            <End Role="BusinessContact" EntitySet="BusinessContacts" />
+          </AssociationSet>
+          <AssociationSet Name="ContactListGeneral" Association="Model1.ContactListGeneral">
+            <End Role="ContactList" EntitySet="ContactLists" />
+            <End Role="General" EntitySet="Generals" />
+          </AssociationSet>
+          <AssociationSet Name="UserHelp" Association="Model1.UserHelp">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Help" EntitySet="Helps" />
+          </AssociationSet>
+          <AssociationSet Name="UserEmail" Association="Model1.UserEmail">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Email" EntitySet="Emails" />
+          </AssociationSet>
+          <AssociationSet Name="UserSchedule" Association="Model1.UserSchedule">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Schedule" EntitySet="Schedules" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Business" Nullable="false" />
+          <Property Type="String" Name="General" Nullable="false" />
+          <Property Type="Int32" Name="ProfileRegistrationNum" Nullable="false" />
+          <NavigationProperty Name="PersonalInfo" Relationship="Model1.PersonalInfoUser" FromRole="User" ToRole="PersonalInfo" />
+          <NavigationProperty Name="Profile" Relationship="Model1.UserProfile" FromRole="User" ToRole="Profile" />
+          <NavigationProperty Name="ContactLists" Relationship="Model1.UserContactList" FromRole="User" ToRole="ContactList" />
+          <NavigationProperty Name="Helps" Relationship="Model1.UserHelp" FromRole="User" ToRole="Help" />
+          <NavigationProperty Name="Emails" Relationship="Model1.UserEmail" FromRole="User" ToRole="Email" />
+          <NavigationProperty Name="Schedules" Relationship="Model1.UserSchedule" FromRole="User" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="PersonalInfo">
+          <Key>
+            <PropertyRef Name="SSN" />
+          </Key>
+          <Property Type="Int32" Name="SSN" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Address" Nullable="false" />
+          <Property Type="String" Name="Phone" Nullable="false" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model1.PersonalInfoUser" FromRole="PersonalInfo" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="RegistrationNum" />
+          </Key>
+          <Property Type="Int32" Name="RegistrationNum" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="RegistrationDate" Nullable="false" />
+          <Property Type="String" Name="Picture" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model1.UserProfile" FromRole="Profile" ToRole="User" />
+        </EntityType>
+        <EntityType Name="ContactList">
+          <Key>
+            <PropertyRef Name="CId" />
+          </Key>
+          <Property Type="Int32" Name="CId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CName" Nullable="false" />
+          <Property Type="String" Name="CAddress" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model1.UserContactList" FromRole="ContactList" ToRole="User" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <NavigationProperty Name="BusinessContacts" Relationship="Model1.ContactListBusinessContact" FromRole="ContactList" ToRole="BusinessContact" />
+          <NavigationProperty Name="Generals" Relationship="Model1.ContactListGeneral" FromRole="ContactList" ToRole="General" />
+        </EntityType>
+        <EntityType Name="BusinessContact">
+          <Key>
+            <PropertyRef Name="BId" />
+          </Key>
+          <Property Type="Int32" Name="BId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="BPhoneNum" Nullable="false" />
+          <Property Type="String" Name="BLevel" Nullable="false" />
+          <NavigationProperty Name="ContactLists" Relationship="Model1.ContactListBusinessContact" FromRole="BusinessContact" ToRole="ContactList" />
+        </EntityType>
+        <EntityType Name="General">
+          <Key>
+            <PropertyRef Name="GId" />
+          </Key>
+          <Property Type="Int32" Name="GId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="GPhoneNum" Nullable="false" />
+          <Property Type="String" Name="RelationType" Nullable="false" />
+          <NavigationProperty Name="ContactLists" Relationship="Model1.ContactListGeneral" FromRole="General" ToRole="ContactList" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="SNum" />
+          </Key>
+          <Property Type="Int32" Name="SNum" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="S_Time" Nullable="false" />
+          <Property Type="String" Name="S_Next" Nullable="false" />
+          <Property Type="String" Name="ScheduleCreate" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model1.UserSchedule" FromRole="Schedule" ToRole="User" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Help">
+          <Key>
+            <PropertyRef Name="ProblemType" />
+          </Key>
+          <Property Type="Int32" Name="ProblemType" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Emergency" Nullable="false" />
+          <Property Type="String" Name="SetupNew" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model1.UserHelp" FromRole="Help" ToRole="User" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="EmailId" />
+          </Key>
+          <Property Type="Int32" Name="EmailId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ImportantMails" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model1.UserEmail" FromRole="Email" ToRole="User" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+        </EntityType>
+        <Association Name="PersonalInfoUser">
+          <End Type="Model1.PersonalInfo" Role="PersonalInfo" Multiplicity="1" />
+          <End Type="Model1.User" Role="User" Multiplicity="1" />
+        </Association>
+        <Association Name="UserProfile">
+          <End Type="Model1.User" Role="User" Multiplicity="1" />
+          <End Type="Model1.Profile" Role="Profile" Multiplicity="1" />
+        </Association>
+        <Association Name="UserContactList">
+          <End Type="Model1.User" Role="User" Multiplicity="1" />
+          <End Type="Model1.ContactList" Role="ContactList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ContactList">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ContactListBusinessContact">
+          <End Type="Model1.ContactList" Role="ContactList" Multiplicity="*" />
+          <End Type="Model1.BusinessContact" Role="BusinessContact" Multiplicity="*" />
+        </Association>
+        <Association Name="ContactListGeneral">
+          <End Type="Model1.ContactList" Role="ContactList" Multiplicity="*" />
+          <End Type="Model1.General" Role="General" Multiplicity="*" />
+        </Association>
+        <Association Name="UserHelp">
+          <End Type="Model1.User" Role="User" Multiplicity="1" />
+          <End Type="Model1.Help" Role="Help" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Help">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserEmail">
+          <End Type="Model1.User" Role="User" Multiplicity="1" />
+          <End Type="Model1.Email" Role="Email" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Email">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserSchedule">
+          <End Type="Model1.User" Role="User" Multiplicity="1" />
+          <End Type="Model1.Schedule" Role="Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="Model1" />
+        <Alias Key="Target" Value="Model1.Store" />
+        <EntityContainerMapping CdmEntityContainer="Model1Container" StorageEntityContainer="Model1TargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
