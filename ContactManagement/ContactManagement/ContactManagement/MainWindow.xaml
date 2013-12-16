@@ -1,0 +1,28 @@
+﻿<Window x:Class="ContactManagement.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ContactManagement" Height="367" Width="705"
+         xmlns:vw="clr-namespace:ContactManagement.Views"   >
+    <Grid Width="800" Height="528">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="464*" />
+            <ColumnDefinition Width="336*" />
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <ImageBrush  TileMode="Tile" 
+                            ViewportUnits="Absolute">
+            </ImageBrush>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="332*"></RowDefinition>
+            <RowDefinition Height="5*" MinHeight="5"></RowDefinition>
+            <RowDefinition Height="175*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <vw:ProductSelectionView Margin="360,12,122,144" Grid.ColumnSpan="2" />
+        <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" ResizeBehavior="PreviousAndNext"
+                      Height="0" Grid.ColumnSpan="2" />
+        <vw:ProductDisplay Margin="30,12,126,11" />
+        <Label Content="FirstName" Height="28" HorizontalAlignment="Left" Margin="369,0,0,0" Name="label1" VerticalAlignment="Top" />
+    </Grid>
+</Window>
